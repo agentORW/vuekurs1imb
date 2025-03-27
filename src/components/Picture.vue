@@ -1,17 +1,3 @@
-<template>
-    <!-- <div class="picture-box">
-        <img :src="`./assets/${image}`" alt="Picture" class="picture-box__image" />
-        <h2 class="picture-box__title">{{ title }}</h2>
-        <p class="picture-box__description">{{ description }}</p>
-    </div> -->
-    <h1>{{ title }}</h1>
-    <img 
-      :src="props.imageSrc" 
-      :alt="props.imageAlt" 
-      class="picture"
-    />
-</template>
-
 <script setup>
 import { defineProps } from 'vue'
 
@@ -20,12 +6,26 @@ const props = defineProps({
     type: String,
     required: true
   },
-  imageAlt: {
+  imageTitle: {
+    type: String,
+    default: 'Image title'
+  },
+  imageDescription: {
     type: String,
     default: 'Image description'
   }
 })
 </script>
+
+<template>
+    <div class="picture-box">
+        <img :src="props.imageSrc" 
+        :alt="props.imageDescription" 
+        class="picture-box__image" />
+        <h2 class="picture-box__title">{{ props.imageTitle }}</h2>
+        <p class="picture-box__description">{{ props.imageDescription }}</p>
+    </div>
+</template>
 
 <style scoped>
 .picture-box {
@@ -36,7 +36,7 @@ const props = defineProps({
 
 .picture-box__image {
     max-width: 100%;
-    height: auto;
+    height: 15rem;
 }
 
 .picture-box__title {
